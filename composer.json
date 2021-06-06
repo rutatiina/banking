@@ -17,5 +17,12 @@
         "psr-4": {
             "Rutatiina\\Banking\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rutatiina\\Banking\\BankingServiceProvider"
+            ]
+        }
     }
 }
