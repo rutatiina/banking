@@ -44,12 +44,10 @@ trait BankAccountTrait
             //create the account
             $Account = new Account;
             $Account->tenant_id = $data->tenant_id;
-            $Account->slug = Str::slug($data->name);
             $Account->name = $data->name;
             $Account->code = $data->code;
             $Account->type = 'asset';
-            $Account->sub_type = 'bank_account';
-            $Account->payment = '1';
+            $Account->payment = 1;
             $Account->save();
 
             //assign the account a code
