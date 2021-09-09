@@ -83,7 +83,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the receivables account
-                $attributes['credit_financial_account_code'] = Account::findCode(1)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(120100)->code;
                 break;
 
             case 'customer-payment':
@@ -93,7 +93,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the receivables account
-                $attributes['credit_financial_account_code'] = Account::findCode(1)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(120100)->code;
                 break;
 
             case 'retainer-payment':
@@ -103,7 +103,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the receivables account
-                $attributes['credit_financial_account_code'] = Account::findCode(1)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(120100)->code;
                 break;
 
             case 'sales-without-invoice':
@@ -127,7 +127,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the interest-income account
-                $attributes['credit_financial_account_code'] = Account::findCode(192)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(410300)->code;
                 break;
 
             case 'other-income':
@@ -165,7 +165,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the Payables account
-                $attributes['credit_financial_account_code'] = Account::findCode(4)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(210100)->code;
                 break;
 
             case 'supplier-payment-refund':
@@ -175,7 +175,7 @@ class TransactionController extends Controller
                 $attributes['debit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the Payables account
-                $attributes['credit_financial_account_code'] = Account::findCode(4)->code;
+                $attributes['credit_financial_account_code'] = Account::findCode(210100)->code;
                 break;
 
 
@@ -194,7 +194,7 @@ class TransactionController extends Controller
                 $attributes['credit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the Payables account
-                $attributes['debit_financial_account_code'] = Account::findCode(4)->code;
+                $attributes['debit_financial_account_code'] = Account::findCode(210100)->code;
                 break;
 
             case 'supplier-payment':
@@ -204,7 +204,7 @@ class TransactionController extends Controller
                 $attributes['credit_financial_account_code'] = $BankAccount->financial_account_code;
 
                 //get the Payables account
-                $attributes['debit_financial_account_code'] = Account::findCode(4)->code;
+                $attributes['debit_financial_account_code'] = Account::findCode(210100)->code;
                 break;
 
             case 'transfer-out':
