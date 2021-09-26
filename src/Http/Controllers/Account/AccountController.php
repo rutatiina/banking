@@ -47,7 +47,7 @@ class AccountController extends Controller
         $per_page = ($request->per_page) ? $request->per_page : 20;
 
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $BankAccount = BankAccount::with(['bank','account'])->paginate($per_page);
@@ -61,7 +61,7 @@ class AccountController extends Controller
     {
         //load the vue version of the app
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $BankAccount = new BankAccount;
@@ -95,7 +95,7 @@ class AccountController extends Controller
     public function show($id)
     {
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         return BankAccount::find($id);
@@ -104,7 +104,7 @@ class AccountController extends Controller
     public function edit($id)
     {
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $BankAccount = BankAccount::findOrFail($id);

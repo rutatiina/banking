@@ -26,7 +26,7 @@ class BankController extends Controller
 
         if (!FacadesRequest::wantsJson())
         {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $Banks = Bank::paginate($per_page);
@@ -41,7 +41,7 @@ class BankController extends Controller
         //load the vue version of the app
         if (!FacadesRequest::wantsJson())
         {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $Bank = new Bank;

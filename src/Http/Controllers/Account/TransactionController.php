@@ -44,7 +44,7 @@ class TransactionController extends Controller
         $per_page = ($request->per_page) ? $request->per_page : 20;
 
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $BankTransaction = Transaction::latest()->paginate($per_page);
@@ -518,7 +518,7 @@ class TransactionController extends Controller
     public function upload($financial_account_code)
 	{
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 	}
 

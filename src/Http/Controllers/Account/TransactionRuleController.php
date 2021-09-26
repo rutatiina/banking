@@ -30,7 +30,7 @@ class TransactionRuleController extends Controller
     public function index($bank_account_id, Request $request)
 	{
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         //Get all the bank accounts
@@ -60,7 +60,7 @@ class TransactionRuleController extends Controller
 	{
         if (!FacadesRequest::wantsJson())
         {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $bankAccount = BankAccount::where('id', $bank_account_id)->firstOrFail();
@@ -126,7 +126,7 @@ class TransactionRuleController extends Controller
 	{
         if (!FacadesRequest::wantsJson())
         {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $bankAccount = BankAccount::where('id', $bank_account_id)->firstOrFail();

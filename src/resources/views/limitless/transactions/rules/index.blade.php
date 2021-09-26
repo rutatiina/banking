@@ -1,5 +1,5 @@
 {{--@extends('accounting::layouts.layout_2.LTR.layout_navbar_sidebar_fixed')--}}
-@extends('l-limitless-bs4.layout_2-ltr-default.full')
+@extends('ui.limitless::layout_2-ltr-default.full')
 
 @section('title', 'Banking :: Transaction rules')
 

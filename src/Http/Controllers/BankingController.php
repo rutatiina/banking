@@ -28,7 +28,7 @@ class BankingController extends Controller
         $per_page = ($request->per_page) ? $request->per_page : 20;
 
         if (!FacadesRequest::wantsJson()) {
-            return view('l-limitless-bs4.layout_2-ltr-default.appVue');
+            return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
         $BankAccount = BankAccount::paginate($per_page);

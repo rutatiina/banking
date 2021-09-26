@@ -1,4 +1,4 @@
-@extends('l-limitless-bs4.layout_2-ltr-default.bootstrap4')
+@extends('ui.limitless::layout_2-ltr-default.bootstrap4')
 
 @section('title', 'Banking :: Bank Account :: Create')
 
