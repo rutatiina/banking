@@ -24,8 +24,8 @@ use Rutatiina\FinancialAccounting\Classes\Account as AccountClass;
 use Rutatiina\Contact\Models\Contact;
 use Rutatiina\Contact\Traits\ContactTrait;
 use Yajra\DataTables\Facades\DataTables;
-use Rutatiina\Classes\Countries;
-use Rutatiina\Classes\Currencies;
+use Rutatiina\Globals\Services\Countries;
+use Rutatiina\Globals\Services\Currencies;
 
 class AccountController extends Controller
 {
