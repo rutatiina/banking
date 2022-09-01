@@ -33,6 +33,7 @@ Route::group(['middleware' => ['web', 'auth', 'tenant']], function() use ($prefi
             Route::resource('transactions', 'Rutatiina\Banking\Http\Controllers\Account\TransactionController', ['as' => 'banking']);
             Route::resource('accounts/{financial_account_code}/transactions/rules', 'Rutatiina\Banking\Http\Controllers\Account\TransactionRuleController', ['as' => 'banking.account.transactions']);
             Route::resource('accounts/{financial_account_code}/transactions', 'Rutatiina\Banking\Http\Controllers\Account\TransactionController', ['as' => 'banking.account']);
+            Route::resource('accounts/{financial_account_code}/import-que', 'Rutatiina\Banking\Http\Controllers\Account\ImportQueController', ['as' => 'banking.account']);
             Route::resource('accounts', 'Rutatiina\Banking\Http\Controllers\Account\AccountController', ['as' => 'banking']);
 
             Route::resource('', 'Rutatiina\Banking\Http\Controllers\BankingController');

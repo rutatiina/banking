@@ -679,7 +679,7 @@ class TransactionController extends Controller
 
 
             if (isset($row[$mapping['debit_column']])) {
-                Log::info('preg_replace(): issue: '.$row[$mapping['debit_column']].' <-- ||| -->> '.$request->input('mapping.debit_format'));
+                //Log::info('preg_replace(): issue: '.$row[$mapping['debit_column']].' <-- ||| -->> '.$request->input('mapping.debit_format'));
                 $debitValue = $this->formatValue($row[$mapping['debit_column']], $request->input('mapping.debit_format'));
             }
 
