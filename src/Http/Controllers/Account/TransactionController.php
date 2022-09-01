@@ -555,7 +555,7 @@ class TransactionController extends Controller
             ], 422);
         }
 
-        $file = Storage::disk('public_storage')->putFile('/', $request->file('file'));
+        $file = Storage::disk('public')->putFile('/', $request->file('file'));
 
         //Copy imported file into array
         //$params = ['io_factory' => true];
