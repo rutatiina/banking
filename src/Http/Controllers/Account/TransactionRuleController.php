@@ -38,13 +38,13 @@ class TransactionRuleController extends Controller
 
         $bankAccount = BankAccount::where('id', $bank_account_id)->firstOrFail();
 
-        $rules = Rule::where('financial_account_code', $bankAccount->financial_account_code)->paginate($per_page);
+        $rules = Rule::where('bank_account_id', $bankAccount->id)->paginate($per_page);
 
         return [
             'tableData' => $rules
         ];
 
-		//$bankAccount = BankAccount::where('id', $financial_account_code)->firstOrFail();
+		//$bankAccount = BankAccount::where('id', $bank_account_id)->firstOrFail();
         //return view('banking::transactions.rules.index')->with([
 		//	'bank_account' => $bankAccount,
 		//	'accounts' => Account::all()->groupBy('type'),
@@ -96,20 +96,20 @@ class TransactionRuleController extends Controller
             'categorize_when' => ['required', 'string'],
             'criteria' => ['required', 'array'],
             'process_as' => ['required', 'string'],
-            'options' => ['required', 'array'],
+            //'options' => ['required', 'array'],
         ];
 
         $request->validate($rules);
 
 		$Rule = new Rule;
 		$Rule->tenant_id = Auth::user()->tenant->id;
-		$Rule->financial_account_code = $request->bank_account['financial_account_code'];
+		$Rule->bank_account_id = $request->bank_account['id'];
 		$Rule->name = $request->name;
 		$Rule->apply_to = $request->apply_to;
 		$Rule->categorize_when = $request->categorize_when;
 		$Rule->process_as = $request->process_as;
 		$Rule->criteria = $request->criteria;
-		$Rule->options = $request->options;
+		//$Rule->options = $request->options; //the options has been commented out because i dont remember why it was created in the 1st place
 		$Rule->save();
 
         return [
@@ -119,7 +119,7 @@ class TransactionRuleController extends Controller
 
 	}
 
-    public function show($financial_account_code, $id)
+    public function show($bank_account_id, $id)
 	{}
 
     public function edit($bank_account_id, $id)
@@ -167,7 +167,7 @@ class TransactionRuleController extends Controller
         $request->validate($rules);
 
         $Rule = Rule::findOrFail($id);
-        //$Rule->financial_account_code = $request->bank_account['financial_account_code'];
+        //$Rule->bank_account_id = $request->bank_account['id'];
         $Rule->name = $request->name;
         $Rule->apply_to = $request->apply_to;
         $Rule->categorize_when = $request->categorize_when;
@@ -183,12 +183,12 @@ class TransactionRuleController extends Controller
 
     }
 
-    public function destroy($financial_account_code, $id)
+    public function destroy($bank_account_id, $id)
 	{}
 
-    public function datatables($financial_account_code)
+    public function datatables($bank_account_id)
 	{
-        return Datatables::of(Rule::where('financial_account_code', $financial_account_code))->make(true);
+        return Datatables::of(Rule::where('bank_account_id', $bank_account_id))->make(true);
     }
 
     public function exportToExcel()
