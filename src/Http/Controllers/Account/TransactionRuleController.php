@@ -17,6 +17,7 @@ use Rutatiina\Contact\Traits\ContactTrait;
 use Rutatiina\FinancialAccounting\Traits\FinancialAccountingTrait;
 use Yajra\DataTables\Facades\DataTables;
 use Maatwebsite\Excel\Facades\Excel;
+use Rutatiina\Tax\Models\Tax;
 
 class TransactionRuleController extends Controller
 {
@@ -69,6 +70,7 @@ class TransactionRuleController extends Controller
         $attributes['_method'] = 'POST';
         $attributes['bank_account'] = $bankAccount;
         $attributes['criteria'] = [];
+        $attributes['options'] = [];
 
         return [
             'urlPost' => '/banking/accounts/'.$bank_account_id.'/transactions/rules',
@@ -136,6 +138,7 @@ class TransactionRuleController extends Controller
         $attributes['bank_account'] = $bankAccount;
 
         return [
+            'pageTitle' => 'Update transaction rule.',
             'urlPost' => '/banking/accounts/'.$bank_account_id.'/transactions/rules/'.$id,
             'bankAccount' => $bankAccount,
             'financialAccountsByType' => Account::all()->groupBy('type'),
@@ -145,6 +148,7 @@ class TransactionRuleController extends Controller
                 'suppliers' => Contact::whereJsonContains('types', 'supplier')->get(),
                 'customers' => Contact::whereJsonContains('types', 'customer')->get()
             ],
+            'taxes' => Tax::get(),
             'attributes' => $attributes
         ];
 
@@ -179,6 +183,7 @@ class TransactionRuleController extends Controller
         return [
             'status'    => true,
             'messages'   => ['Bank account transaction Rule updated.'],
+            'callback' => '/banking/accounts/'.$bank_account_id.'/transactions/rules',
         ];
 
     }

@@ -71,4 +71,39 @@ class Rule extends Model
         return $attributes;
     }
 
+    public function getCriteriaAttribute($value)
+    {
+        $valueArray = json_decode($value, true);
+
+        if (is_array($valueArray))
+        {
+            return $valueArray;
+        }
+        else
+        {
+            return [];
+        }
+    }
+
+    public function getOptionsAttribute($value)
+    {
+        $valueArray = json_decode($value, true);
+
+        if (is_array($valueArray))
+        {
+            return $valueArray;
+        }
+        else
+        {
+            //the defaults were set because javascript was considering the options array empty even when options are dynamically added
+            //solution was to make sure the array contains the values
+            return [
+                'financial_account_code' => null,
+                'contact_id' => null,
+                'tax_id' => null,
+                'payment_mode' => null,
+            ];
+        }
+    }
+
 }
