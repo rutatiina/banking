@@ -284,6 +284,8 @@ class TransactionController extends Controller
 
         $request->validate($rules);
 
+        // $bankAccount = BankAccount::findOrFail($request->bank_account_id);
+
         $contact = Contact::find($request->contact_id);
 
         //update financial account balances
@@ -331,12 +333,12 @@ class TransactionController extends Controller
             $Txn->date = $request->date;
             $Txn->contact_id = (is_numeric($request->contact_id)) ? $request->contact_id : 0;
             $Txn->contact_name = optional($contact)->name;
-            $Txn->debit_financial_account_code = (is_numeric($request->debit_financial_account_code)) ? $request->debit_financial_account_code : 0;
-            $Txn->credit_financial_account_code = (is_numeric($request->credit_financial_account_code)) ? $request->credit_financial_account_code : 0;
             $Txn->currency = $request->currency;
             //$Txn->method = $request->method;
             $Txn->reference = $request->reference;
             $Txn->description = $request->description;
+            $Txn->debit = $request->debit ?? 0;
+            $Txn->credit = $request->credit ?? 0;
             $save = $Txn->save();
 
             $bank_txn = $request;
@@ -389,7 +391,11 @@ class TransactionController extends Controller
                 $this->errors[] = 'Fatal Internal Error: Failed to save bank transaction to database. Please contact Admin';
             }
 
-            return false;
+            return [
+                'status'    => false,
+                'messages'  => $this->errors,
+            ];
+
         }
 	}
 

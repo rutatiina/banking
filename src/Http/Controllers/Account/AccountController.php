@@ -177,10 +177,6 @@ class AccountController extends Controller
         return BankAccount::select('id', 'financial_account_code', 'name', 'number', 'code')->where('id', '!=', $id)->get();
     }
 
-    public function datatables()
-    {
-    }
-
     public function overview($id)
     {
 		$financial_account_code = $id;
