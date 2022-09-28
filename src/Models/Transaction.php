@@ -6,6 +6,7 @@ use Rutatiina\Tenant\Scopes\TenantIdScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Rutatiina\FinancialAccounting\Models\Account;
 
 class Transaction extends Model
 {
@@ -21,6 +22,8 @@ class Transaction extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = []; //make all columns fillable
+
+    protected $appends = ['account'];
 
 	/**
      * The "booting" method of the model.
@@ -67,6 +70,23 @@ class Transaction extends Model
         $attributes['recurring'] = [];
 
         return $attributes;
+    }
+
+    public function bank_account()
+    {
+        return $this->belongsTo('Rutatiina\Banking\Models\Account', 'bank_account_id');
+    }
+
+    public function getAccountAttribute()
+    {
+        if ($this->bank_account_financial_account_code == $this->debit_financial_account_code)
+        {
+            return Account::findCode($this->credit_financial_account_code);
+        }
+        else
+        {
+            return Account::findCode($this->debit_financial_account_code);
+        }
     }
 
 }

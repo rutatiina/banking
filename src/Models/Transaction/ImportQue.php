@@ -21,6 +21,11 @@ class ImportQue extends Model
 
     protected $guarded = []; //make all columns fillable
 
+    protected $casts = [
+        'debit' => 'double',
+        'credit' => 'double',
+    ];
+
 	/**
      * The "booting" method of the model.
      *

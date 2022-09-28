@@ -38,7 +38,7 @@ class TransactionController extends Controller
     public function __construct()
     {}
 
-    public function index(Request $request)
+    public function index(Request $request, $bankAccountId)
     {
         //Get all the bank accounts
         $per_page = ($request->per_page) ? $request->per_page : 20;
@@ -47,7 +47,9 @@ class TransactionController extends Controller
             return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
-        $BankTransaction = Transaction::latest()->paginate($per_page);
+        $BankTransaction = Transaction::where('bank_account_id', $bankAccountId)
+            ->orderBy('id', 'desc')
+            ->paginate($per_page);
 
         return [
             'tableData' => $BankTransaction
@@ -353,6 +355,14 @@ class TransactionController extends Controller
             {
                 //$api = new API;
                 //$api_store = $api->store($bank_txn);
+            }
+
+            if ($request->banking_transaction_import_que_id)
+            {
+                ImportQue::where('id', $request->banking_transaction_import_que_id)
+                    ->update([
+                        'banking_transaction_id' => $Txn->id
+                    ]);
             }
 
             DB::connection('tenant')->commit();

@@ -48,7 +48,7 @@ class ImportQueController extends Controller
             return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
-        $importQue = ImportQue::latest()->paginate($per_page);
+        $importQue = ImportQue::orderBy('id', 'asc')->paginate($per_page);
 
         return [
             'tableData' => $importQue
