@@ -40,6 +40,7 @@ class ImportQueController extends Controller
 
     public function index(Request $request)
     {
+        // return $request;
         //Get all the bank accounts
         $per_page = ($request->per_page) ? $request->per_page : 20;
 
@@ -48,7 +49,14 @@ class ImportQueController extends Controller
             return view('ui.limitless::layout_2-ltr-default.appVue');
         }
 
-        $importQue = ImportQue::orderBy('id', 'asc')->paginate($per_page);
+        $query = ImportQue::query();
+
+        if ($request->status == 'imported') $query->imported();
+        if ($request->status == 'pending') $query->pending();
+
+        $query->orderBy('id', 'asc');
+        // return $query->toSql();
+        $importQue = $query->paginate($per_page);
 
         return [
             'tableData' => $importQue

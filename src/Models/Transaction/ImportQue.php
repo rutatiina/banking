@@ -38,4 +38,21 @@ class ImportQue extends Model
         static::addGlobalScope(new TenantIdScope);
     }
 
+    public function scopeImported($query)
+    {
+        return $query->where(function($q){
+            $q->whereNotNull('banking_transaction_id');
+            $q->Where('banking_transaction_id', '>', 0);
+        });
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where(function($q){
+            $q->whereNull('banking_transaction_id');
+            $q->orWhere('banking_transaction_id', 0);
+        });
+    }
+
+
 }
