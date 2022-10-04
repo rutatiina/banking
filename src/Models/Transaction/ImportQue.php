@@ -54,5 +54,10 @@ class ImportQue extends Model
         });
     }
 
+    public function scopeCanceled($query)
+    {
+        return $query->where('canceled', 1);
+    }
+
 
 }

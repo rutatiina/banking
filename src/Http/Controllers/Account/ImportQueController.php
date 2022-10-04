@@ -53,6 +53,7 @@ class ImportQueController extends Controller
 
         if ($request->status == 'imported') $query->imported();
         if ($request->status == 'pending') $query->pending();
+        if ($request->status == 'canceled') $query->canceled();
 
         $query->orderBy('id', 'asc');
         // return $query->toSql();
@@ -85,6 +86,18 @@ class ImportQueController extends Controller
     public function destroy($financial_account_code, Request $request)
 	{
         //
+    }
+
+    public function cancel($financial_account_code, $id)
+	{
+        $record = ImportQue::find($id);
+        $record->canceled = 1;
+        $record->save();
+
+        return [
+            'status' => true,
+            'messages' => ['Cue transaction canceled.']
+        ];
     }
 
 }

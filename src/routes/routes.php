@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web', 'auth', 'tenant']], function() use ($prefi
             Route::post('accounts/transactions/map-fields', 'Rutatiina\Banking\Http\Controllers\Account\TransactionController@mapFields');
             Route::get('accounts/{financial_account_code}/transactions/rules/datatables', 'Rutatiina\Banking\Http\Controllers\Account\TransactionRuleController@datatables');
             Route::post('accounts/{financial_account_code}/transactions/exclude', 'Rutatiina\Banking\Http\Controllers\Account\TransactionController@exclude')->name('banking.account.transactions.exclude');
+            Route::patch('accounts/{financial_account_code}/import-que/{id}/cancel', 'Rutatiina\Banking\Http\Controllers\Account\ImportQueController@cancel')->name('banking.account.import-que.cancel');
 
             Route::get('accounts/{financial_account_code}/transactions/datatables/{category}', 'Rutatiina\Banking\Http\Controllers\Account\TransactionController@datatables');
             Route::post('banks/search', 'Rutatiina\Banking\Http\Controllers\BankController@search');
